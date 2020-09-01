@@ -275,9 +275,6 @@ def _try_builder(
         **kwargs):
     bucket = "try"
     pool = "luci.flutter.try"
-    merged_properties = helpers.merge_dicts(properties, {
-        "gold_tryjob": True,
-    })
     name_parts = name.split("|")
 
     luci.list_view_entry(
@@ -289,7 +286,7 @@ def _try_builder(
         bucket,
         pool,
         name,
-        properties = merged_properties,
+        properties,
         **kwargs
     )
 
@@ -303,7 +300,6 @@ def _prod_builder(
         **kwargs):
     merged_properties = helpers.merge_dicts(properties, {
         "upload_packages": True,
-        "gold_tryjob": False,
     })
     bucket = "prod"
     pool = "luci.flutter.prod"

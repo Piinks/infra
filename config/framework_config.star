@@ -136,6 +136,7 @@ def framework_prod_config(platform_args, branch, version, ref):
             "android_sdk_preview_license": "\n84831b9409646a918e30573bab4c9c91346d8abd",
             "dependencies": ["android_sdk", "chrome_and_drivers"],
             "subshards": ["libraries", "misc", "widgets"],
+            "gold_tryjob": False,
         },
         caches = [
             swarming.cache(name = "pub_cache", path = ".pub_cache"),
@@ -208,6 +209,7 @@ def framework_prod_config(platform_args, branch, version, ref):
             "android_sdk_preview_license": "\n84831b9409646a918e30573bab4c9c91346d8abd",
             "dependencies": ["android_sdk", "chrome_and_drivers"],
             "subshards": ["0", "1", "2", "3", "4", "5", "6", "7_last"],
+            "gold_tryjob": False,
         },
         caches = [
             swarming.cache(name = "pub_cache", path = ".pub_cache"),
@@ -329,6 +331,7 @@ def framework_prod_config(platform_args, branch, version, ref):
             "android_sdk_preview_license": "\n84831b9409646a918e30573bab4c9c91346d8abd",
             "dependencies": ["android_sdk", "chrome_and_drivers"],
             "subshards": ["libraries", "misc", "widgets"],
+            "gold_tryjob": False,
         },
         caches = [
             swarming.cache(name = "pub_cache", path = ".pub_cache"),
@@ -400,6 +403,9 @@ def framework_prod_config(platform_args, branch, version, ref):
 
     # Mac builders
     common.mac_prod_builder(
+        properties = {
+            "gold_tryjob": False,
+        },
         name = "Mac%s|frwk" % ("" if branch == "master" else " " + branch),
         recipe = recipe_name,
         console_view_name = console_view_name,
@@ -454,6 +460,7 @@ def framework_try_config(platform_args):
             "android_sdk_preview_license": "\n84831b9409646a918e30573bab4c9c91346d8abd",
             "dependencies": ["android_sdk", "chrome_and_drivers"],
             "subshards": ["libraries", "misc", "widgets"],
+            "gold_tryjob": True,
         },
         caches = [
             swarming.cache(name = "pub_cache", path = ".pub_cache"),
@@ -505,6 +512,7 @@ def framework_try_config(platform_args):
             "android_sdk_preview_license": "\n84831b9409646a918e30573bab4c9c91346d8abd",
             "dependencies": ["android_sdk", "chrome_and_drivers"],
             "subshards": ["0", "1", "2", "3", "4", "5", "6", "7_last"],
+            "gold_tryjob": True,
         },
         caches = [
             swarming.cache(name = "pub_cache", path = ".pub_cache"),
@@ -619,6 +627,9 @@ def framework_try_config(platform_args):
 
     # Mac platform
     common.mac_try_builder(
+        properties = {
+            "gold_tryjob": True,
+        },
         name = "Mac|frwk",
         recipe = "flutter",
         repo = repos.FLUTTER,
@@ -655,6 +666,7 @@ def framework_try_config(platform_args):
             "android_sdk_preview_license": "\n84831b9409646a918e30573bab4c9c91346d8abd",
             "dependencies": ["android_sdk", "chrome_and_drivers"],
             "subshards": ["libraries", "misc", "widgets"],
+            "gold_tryjob": True,
         },
         caches = [
             swarming.cache(name = "pub_cache", path = ".pub_cache"),
